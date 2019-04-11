@@ -1,1 +1,1 @@
-illuminate dApp - redux on ethereum
+illuminate dApp - webapp for redux on ethereum
