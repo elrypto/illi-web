@@ -24,7 +24,65 @@ export const addProvider = async (provider: IProvider, dispatch: any) => {
   });
 };
 
-/*export const toggleFavAction = (
+/*
+
+-- interfaces
+export type Dispatch = React.Dispatch<IAction>;
+
+
+export interface IEpisode {
+  id: number;
+  name: string;
+  image: {
+    medium: string;
+    original: string;
+  };
+  season: number;
+  number: number;
+  summary: string;
+  url: string;
+}
+
+export interface IState {
+  episodes: Array<IEpisode>;
+  favorites: Array<IEpisode>;
+}
+
+export interface IAction {
+  type: string;
+  payload: Array<IEpisode> | any;
+}
+
+// toggleFavAction = (episode: IEpisode | any, state:IState, dispatch:any): IAction => {
+export interface IEpisodeProps {
+  episodes: Array<IEpisode>;
+  store: { state: IState; dispatch: Dispatch };
+  toggleFavAction: (episode: IEpisode, state: IState, dispatch: Dispatch) => IAction;
+  favorites: Array<IEpisode>;
+}
+
+
+-- reducer
+switch (action.type) {
+    case "FETCH_DATA":
+      return { ...state, episodes: action.payload };
+
+
+--action
+
+export const fetchDataAction = async (dispatch: any) => {
+  const URL =
+    "https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes";
+  const data = await fetch(URL);
+  const dataJSON = await data.json();
+  return dispatch({
+    type: "FETCH_DATA",
+    payload: dataJSON._embedded.episodes
+  });
+};
+
+
+export const toggleFavAction = (
   episode: IEpisode | any,
   state: IState,
   dispatch: any
