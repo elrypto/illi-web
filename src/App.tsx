@@ -1,19 +1,23 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Store } from "./common/Store";
+import { Link } from "@reach/router";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-           illuminate - redux
-          </p>
-        </header>
-      </div>
-    );
-  }
+export default function App(props: any): JSX.Element {
+  const { state } = React.useContext(Store);
+
+  return (
+    <React.Fragment>
+      <header className="header">
+        <div>
+        <h4>illuminate</h4>
+          <p>solutions on demand, any time</p>
+        </div>
+        <div>
+          <Link to="/">Home</Link>
+          <Link to="/register">Register</Link>
+        </div>
+      </header>
+      {props.children}
+    </React.Fragment>
+  );
 }
-
-export default App;
