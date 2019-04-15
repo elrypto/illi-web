@@ -2,17 +2,9 @@ import * as React from "react";
 import {Store} from '../common/Store';
 import  {IProvider, Dispatch} from './../common/Interfaces';
 import { addProvider } from "../common/Actions";
-import getWeb3 from "./../utils/getWeb3";
-
-export interface IProps {
-  dispatch:Dispatch;
-}
-
-interface IState {
-  name: string
-}
-
-
+import getWeb3, {getDeployedNetwork} from "../utils/getWeb3";
+import { async } from "q";
+import IlliEthContract from './../contracts/IlliEth.json';
 
 
 export default function RegisterProvider(props: any): Array<JSX.Element> | any{
@@ -27,10 +19,31 @@ export default function RegisterProvider(props: any): Array<JSX.Element> | any{
   
   React.useEffect(() => {
    
+    async function initWeb3(){
+      console.log("initWeb3()");
+      const web3 = await getWeb3();
+      const accounts = await web3.eth.getAccounts();
+      const networkId = await web3.eth.net.getId();
+      //const deployedNetwork = IlliEthContract.networks[networkId];
+      const deployedNetwork = getDeployedNetwork(IlliEthContract, networkId);
+      const instance = new web3.eth.Contract(
+        IlliEthContract.abi,
+        deployedNetwork && deployedNetwork.address,
+      );
+
+      setWeb3(web3);
+      setAccounts(accounts);
+      setContract(instance);
+    }
+
+
+    initWeb3();
       
     setInitialized(true);
   }, [initialized]);
 
+
+  console.log(state);
 
   return (
     <div className="container-fluid">

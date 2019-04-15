@@ -36,4 +36,8 @@ const getWeb3 = () =>
     });
   });
 
+export const getDeployedNetwork = (contract, networkId) => {
+  return contract.networks[networkId];
+};
+
 export default getWeb3;
