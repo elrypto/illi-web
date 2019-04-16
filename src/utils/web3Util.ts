@@ -1,25 +1,22 @@
 import { IWeb3State } from "../common/Interfaces";
+import getWeb3, {getDeployedNetwork} from "./getWeb3";
 
-export const web3PayloadForContract = (contractJson:any):any => {
-   
 
-    /*
-        try{
+export const web3PayloadForContract = async(contractJson:any):Promise<IWeb3State|undefined> => {
     console.log("loadWeb3()");
+  try{  
     const web3 = await getWeb3();
     const accounts = await web3.eth.getAccounts();
     const networkId = await web3.eth.net.getId();
-    const deployedNetwork = getDeployedNetwork(IlliEthContract, networkId);
+    const deployedNetwork = getDeployedNetwork(contractJson, networkId);
 
     const instance = new web3.eth.Contract(
-      IlliEthContract.abi,
+      contractJson.abi,
       deployedNetwork && deployedNetwork.address
     );
   
-    return dispatch({
-      type: LOAD_WEB3,
-      payload: { web3State: {web3, accounts, contract:instance} }
-    });
+    return {web3, accounts, contract:instance};
+
   } catch (error) {
     // Catch any errors for any of the above operations.
     alert(
@@ -27,5 +24,4 @@ export const web3PayloadForContract = (contractJson:any):any => {
     );
     console.error(error);
   }
-    */
 }
