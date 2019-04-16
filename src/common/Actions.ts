@@ -1,4 +1,4 @@
-import { IProvider, IAction } from "./Interfaces";
+import { IProvider, IAction, IWeb3State } from "./Interfaces";
 import IlliEthContract from "./../contracts/IlliEth.json";
 import { web3PayloadForContract } from "./../utils/web3Util";
 
@@ -25,8 +25,11 @@ export const fetchProviders = async (dispatch: any) => {
   });
 };
 
-export const addProvider = async (provider: IProvider, dispatch: any) => {
+export const addProvider = async (provider: IProvider, web3State:IWeb3State, dispatch: any) => {
   console.log("actions.addProvider()", provider);
+
+  console.log("eth address of user", web3State.accounts[0]);
+
   return dispatch({
     type: ADD_PROVIDER,
     payload: provider

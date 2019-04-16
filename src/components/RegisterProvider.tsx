@@ -9,6 +9,7 @@ import _ from "lodash";
 
 export default function RegisterProvider(props: any): Array<JSX.Element> | any{
   const { state, dispatch } = React.useContext(Store);
+  const {web3State} = state; 
   
   const [currentProvider, setProvider] = React.useState({name:""});
   const [name, setName] = React.useState("");
@@ -68,7 +69,7 @@ export default function RegisterProvider(props: any): Array<JSX.Element> | any{
         <button
           type="button"
           className="btn btn-outline-secondary"
-          onClick={() => {addProvider(currentProvider, dispatch);}}
+          onClick={() => {addProvider(currentProvider, web3State, dispatch);}}
         >
           Add
         </button>
