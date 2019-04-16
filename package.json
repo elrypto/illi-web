@@ -15,7 +15,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
-    "typescript": "3.4.3"
+    "typescript": "3.4.3",
+    "web3": "1.0.0-beta.37"
   },
   "scripts": {
     "start": "react-scripts start",

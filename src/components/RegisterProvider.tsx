@@ -1,17 +1,19 @@
 import * as React from "react";
 import {Store} from '../common/Store';
 import  {IProvider, Dispatch} from './../common/Interfaces';
-import { addProvider } from "../common/Actions";
-//import getWeb3, {getDeployedNetwork} from "../utils/getWeb3";
+import { addProvider, loadWeb3 } from "../common/Actions";
 import IlliEthContract from './../contracts/IlliEth.json';
-
-
+import {IWeb3State} from './../common/Interfaces';
+import _ from "lodash";
 
 
 export default function RegisterProvider(props: any): Array<JSX.Element> | any{
   const { state, dispatch } = React.useContext(Store);
+  
   const [currentProvider, setProvider] = React.useState({name:""});
   const [name, setName] = React.useState("");
+  
+ 
   /*
   const [initialized, setInitialized] = React.useState(false);
   const [web3, setWeb3] = React.useState(null);
