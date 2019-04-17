@@ -3,7 +3,7 @@ import getWeb3, {getDeployedNetwork} from "./getWeb3";
 
 
 export const web3PayloadForContract = async(contractJson:any):Promise<IWeb3State|undefined> => {
-    console.log("loadWeb3()");
+  
   try{  
     const web3 = await getWeb3();
     const accounts = await web3.eth.getAccounts();

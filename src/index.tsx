@@ -13,8 +13,6 @@ dotenv.config();
 
 const RouterPage = (props: { pageComponent: JSX.Element } & RouteComponentProps) => props.pageComponent;
 
-console.log("fallbackport", process.env.WEB3_FALLBACK_DEV_PORT);
-console.log("browser", process.env.BROWSER);
 
 ReactDOM.render(
   <StoreProvider>

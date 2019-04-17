@@ -1,6 +1,6 @@
 import React from "react";
 import { IProviderState, IAction, IWeb3State, IAppState } from "./Interfaces";
-import {ADD_PROVIDER, FETCH_PROVIDERS_DATA, LOAD_WEB3} from "./Actions";
+import {ADD_PROVIDER, FETCH_PROVIDERS_DATA, LOAD_WEB3, LOAD_SCHAIN} from "./Actions";
 
 const initialState: IAppState = {
   web3State: {
@@ -10,6 +10,10 @@ const initialState: IAppState = {
   },
   providerState: {
     providers: []
+  },
+  sChainState: {
+    sChainContract: null,
+    sChainClient: null
   }
 };
 
@@ -22,7 +26,9 @@ function reducer(state: IAppState, action: IAction | any): IAppState {
     case ADD_PROVIDER:
       return { ...state, providerState : {providers: [...state.providerState.providers, action.payload] }};
     case LOAD_WEB3:
-    return { ...state, web3State : action.payload.web3State };
+      return { ...state, web3State : action.payload.web3State };
+    case LOAD_SCHAIN:
+      return { ...state, sChainState: action.payload };
     default:
       return state;
   }
