@@ -1,5 +1,4 @@
 import React, { useState, lazy } from "react";
-//import RegisterProvider from './../components/RegisterProvider';
 import { Store } from "./../common/Store";
 import { loadWeb3, loadSChain } from "../common/Actions";
 
@@ -20,7 +19,6 @@ export default function Register() {
     if (!sChainState) {
       loadSChain(dispatch);
     }
-
   }, [web3State, sChainState]);
 
   return (

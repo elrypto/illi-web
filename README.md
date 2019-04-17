@@ -1,1 +1,1 @@
-illuminate dApp - webapp for redux on ethereum
+illuminate dApp - webapp for ethereum / plasma sidechains
