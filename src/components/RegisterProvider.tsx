@@ -16,6 +16,8 @@ export default function RegisterProvider(props: any): Array<JSX.Element> | any {
   return (
     <div className="container-fluid">
       <div className="card-body col-md-6">
+        <p>Detected Ethereum Address: {web3State.accounts[0]}</p>
+        <p>Service Provider Name:</p>
         <input
           type="text"
           className="form-control"
@@ -33,6 +35,9 @@ export default function RegisterProvider(props: any): Array<JSX.Element> | any {
           className="btn btn-outline-secondary"
           onClick={() => {
             addProvider(currentProvider, web3State, sChainState, dispatch);
+            setName('');
+            currentProvider.name = '';
+            setProvider(currentProvider); 
           }}
         >
           Add

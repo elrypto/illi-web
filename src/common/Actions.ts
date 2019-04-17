@@ -2,7 +2,7 @@ import { IProvider, IAction, IWeb3State, ISideChainState } from "./Interfaces";
 import IlliEthContract from "./../contracts/IlliEth.json";
 import IlliSChainContract from "./../contracts/IlliApp.json";
 import { web3PayloadForContract } from "./../utils/web3Util";
-import {getSChainClient} from "./../utils/getSideChain";
+import { getSChainClient } from "./../utils/getSideChain";
 
 export const FETCH_PROVIDERS_DATA = "FETCH_PROVIDERS_DATA";
 export const ADD_PROVIDER = "ADD_PROVIDER";
@@ -18,7 +18,6 @@ export const loadSChain = async (dispatch: any) => {
     payload: { sChainClient: sChainClient, sChainContract: IlliSChainContract }
   });
 };
-
 
 export const loadWeb3 = async (dispatch: any) => {
   const returnedWebState = await web3PayloadForContract(IlliEthContract);
@@ -38,12 +37,22 @@ export const fetchProviders = async (dispatch: any) => {
   });
 };
 
-export const addProvider = async (provider: IProvider, web3State:IWeb3State, sChainState:ISideChainState,  dispatch: any) => {
+export const addProvider = async (
+  provider: IProvider,
+  web3State: IWeb3State,
+  sChainState: ISideChainState,
+  dispatch: any
+) => {
   console.log("actions.addProvider()", provider);
   console.log("eth address of user", web3State.accounts[0]);
 
-  const {sChainClient} = sChainState;
+  const { sChainClient } = sChainState;
   await sChainClient.loadContract();
+  let instance = sChainClient.getContract();
+  instance.methods
+    .addProviderName(provider.name, web3State.accounts[0])
+    .send({ from: sChainClient.getCurrentUserAddress() }
+  );
 
   return dispatch({
     type: ADD_PROVIDER,
