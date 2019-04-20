@@ -5,12 +5,21 @@ import { web3PayloadForContract } from "./../utils/web3Util";
 import { getSChainClient } from "./../utils/getSideChain";
 import { contractInstanceFromState } from "./../utils/sideChainUtils";
 import _ from "lodash";
+import { async } from "q";
 
 export const FETCH_PROVIDERS_DATA = "FETCH_PROVIDERS_DATA";
 export const ADD_PROVIDER = "ADD_PROVIDER";
 export const LOAD_WEB3 = "LOAD_WEB3";
 export const LOAD_SCHAIN = "LOAD_SCHAIN";
 
+
+/*
+* convienance method that calls loadWeb3 and loadSChain (so its one call for client)
+* if they want both*/
+export const loadChainState = async(dispatch: any) => {
+  await loadWeb3(dispatch);
+  await loadSChain(dispatch);
+}
 
 export const loadSChain = async (dispatch: any) => {
   const sChainClient = await getSChainClient(IlliSChainContract);
@@ -37,6 +46,7 @@ export const fetchProviders = async (
   sChainState: ISideChainState,
   dispatch: any
 ) => {
+
   console.log("schainState, from action", sChainState);
   console.log("web3State, from action", web3State);
 
@@ -44,13 +54,19 @@ export const fetchProviders = async (
   //let instance = await contractInstanceFromState(sChainState);
 
   const { sChainClient } = sChainState;
+  let instance = await contractInstanceFromState(sChainState);
   
-  if (_.isUndefined(sChainClient)){
-    await loadSChain(dispatch);
-  }
+  let allAddresses = await instance.methods
+    .getAllEthAddresses().call();
 
-  //console.log(sChainClient);
-  //let instance = await contractInstanceFromState(sChainState);
+  /*console.log(allAddresses);
+
+  for (let i in allAddresses){  
+    let name = await instance.methods.getProviderName(allAddresses[i]).call();
+    providers.push({name: name});  
+  }  
+
+  console.log("allAddresses::", allAddresses);*/
 
   return dispatch({
     type: FETCH_PROVIDERS_DATA,
@@ -68,13 +84,10 @@ export const addProvider = async (
   console.log("actions.addProvider()", provider);
   console.log("eth address of user", web3State.accounts[0]);
 
- 
-  //await sChainClient.loadContract();
-  //let instance = sChainClient.getContract();
-
-   const { sChainClient } = sChainState;
+  const { sChainClient } = sChainState;
   let instance = await contractInstanceFromState(sChainState);
-    instance.methods
+  
+  instance.methods
     .addProviderName(provider.name, web3State.accounts[0])
     .send({ from: sChainClient.getCurrentUserAddress() });
 

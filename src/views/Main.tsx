@@ -1,6 +1,6 @@
 import React from "react";
 import { Store } from "./../common/Store";
-import { loadWeb3, loadSChain } from "./../common/Actions";
+import { loadWeb3, loadSChain, loadChainState } from "./../common/Actions";
 
 const ProviderList = React.lazy<any>(() =>
   import("./../components/ProviderList")
@@ -12,13 +12,23 @@ export default function Main() {
   const { sChainState } = state.sChainState;
 
   React.useEffect(() => {
-    if (!web3State) {
-      loadWeb3(dispatch);
+    console.log("useEffect()");
+    console.log("state:", state);
+    console.log("webstate:", web3State);
+    console.log("schainstate:", sChainState);
+    console.log("!webstate=", !web3State);
+    console.log("!schainstate:", !sChainState);
+
+
+    async function loadFromAction() {
+      await loadChainState(dispatch);
     }
 
-    if (!sChainState) {
-      loadSChain(dispatch);
-    }
+    //if (!web3State || !sChainState) {
+      
+    //}
+    loadFromAction();
+
   }, [web3State, sChainState]);
 
   //console.log(state);
