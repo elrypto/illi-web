@@ -7,11 +7,14 @@ export const getSChainClient = async (contractJson: any):Promise<any | undefined
     /*
         TODO:GET FROM ENV!
     */
+    let writeUrl = 'ws://127.0.0.1:46658/websocket';
+    let readUrl = 'ws://127.0.0.1:46658/queryws';
+    let networkId = 'default';
 
-      let writeUrl = 'ws://192.168.43.120:46658/websocket';
+      /*let writeUrl = 'ws://192.168.43.120:46658/websocket';
       let readUrl = 'ws://192.168.43.120:46658/queryws';
       let networkId = 'default';
-  
+      */
       if (process.env.NETWORK === 'extdev') {
         writeUrl = 'ws://extdev-plasma-us1.dappchains.com:80/websocket';
         readUrl = 'ws://extdev-plasma-us1.dappchains.com:80/queryws';

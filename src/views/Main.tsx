@@ -37,7 +37,7 @@ export default function Main() {
 
       <React.Suspense fallback={<div>loading...</div>}>
         <section className="episode-layout">
-          <ProviderList />
+          
         </section>
       </React.Suspense>
  

@@ -1,14 +1,17 @@
 import React from "react";
-import ChainData2 from "./ChainData2";
+import ChainData3 from "./ChainData3";
+import RegisterProvider from "../../RegisterProvider";
 
-React.lazy(() => import("./ChainData2"));
+React.lazy(() => import("./ChainData3"));
+React.lazy(() => import("./../../RegisterProvider"));
 
 export default function LoadTest() {
   return (
     <div>
       <p>beep beep boop</p>
       <React.Suspense fallback={<div>Loading...</div>}>
-        <ChainData2/>
+        <ChainData3 />
+        <RegisterProvider />
       </React.Suspense>
     </div>
   );
