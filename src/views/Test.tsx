@@ -1,11 +1,12 @@
 import React from 'react'
-import LoadTest from './../components/test/loading/LoadTest';
+import LoadTest2 from './../components/test/loading/LoadTest2';
+
 
 export default function Test() {
   return (
     <div>
       <p>==--* test  +___=-`</p>
-      <LoadTest />
+      <LoadTest2 />
     </div>
   )
 }

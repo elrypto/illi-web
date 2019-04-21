@@ -1955,11 +1955,11 @@
       "events": {},
       "links": {},
       "address": "0x2EFc8879bBF0B9021531E56BC2c6cA27Ba857adF",
-      "transactionHash": "0xf2c60f37ab590773bf287b2386670218dd5b66817a9e84d2fcc347237b692e37"
+      "transactionHash": "0xc3ac04ac01681cf97c87ecf44975076ed31869fcc61a6561f2ffb463171c7bcf"
     }
   },
   "schemaVersion": "3.0.5",
-  "updatedAt": "2019-04-20T15:08:46.122Z",
+  "updatedAt": "2019-04-20T20:00:25.073Z",
   "devdoc": {
     "methods": {}
   },

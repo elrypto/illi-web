@@ -10,7 +10,6 @@ export default function App(props: any): JSX.Element {
       <header className="header">
         <div>
         <h4>illuminate</h4>
-          <p>solutions on demand, any time</p>
         </div>
         <div>
           <Link to="/">Home</Link>
