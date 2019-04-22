@@ -1,8 +1,10 @@
 import React from 'react';
-import WithChainState from './../../chainstate/WithChainState';
-import Web3Load  from './../web3/Web3Load';
+import WithChainState from '../../chainstate/WithChainState';
+import Web3Load  from '../web3/Web3Load';
 import Web3Wrapped from '../web3/Web3Wrapped';
 import Web3Wrapper from '../web3/Web3Wrapper';
+import Web3ContractWrapped, { Web3ContractWrappedConsumer } from '../web3/Web3ContractWrapped';
+import MyDisplayComponent from '../web3/MyDisplayComponent';
 
 //React.lazy(() => import("./../../RegisterProvider"));
 ////const RegisterProvider = React.lazy(() => import("./../../RegisterProvider"));
@@ -12,9 +14,15 @@ export default function LoadTest2() {
   return (
     <React.Fragment>
       <p>LoadTest2</p>
-      
       <Web3Wrapper>
+        
         <Web3Wrapped />
+        <Web3ContractWrapped>
+          <Web3ContractWrappedConsumer>
+            {({setInited}) => <MyDisplayComponent 
+                                    initializer={setInited}/>}
+          </Web3ContractWrappedConsumer>
+        </Web3ContractWrapped>
       </Web3Wrapper>
     </React.Fragment>
   );
