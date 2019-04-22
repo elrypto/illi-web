@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {withAccount, withWeb3} from './Web3Wrapper';
+import {withAccount, withWeb3} from '../../chainstate/Web3Wrap';
 
 
 class Web3Wrapped extends Component {

@@ -3,7 +3,7 @@ import Web3 from "web3";
 
 const Web3Context = React.createContext({});
 
-class Web3Wrapper extends Component {
+class Web3Wrap extends Component {
   state = {};
 
   componentDidMount() {
@@ -13,7 +13,7 @@ class Web3Wrapper extends Component {
           web3: new Web3(window.web3.currentProvider)
         },
         () => {
-          //this.state.web3.currentProvider.publicConfigStore(),
+          //TODO: poll for changes
           this.getAccountInfo();
         }
       );
@@ -77,4 +77,4 @@ function withAccount(Child){
 
 const Web3Consumer = Web3Context.Consumer;
 export { Web3Consumer, withWeb3, withAccount};
-export default Web3Wrapper;
+export default Web3Wrap;

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 //import Web3 from 'web3';
-import Web3Wrapper, {Web3Consumer} from './Web3Wrapper';
+import Web3Wrapper, {Web3Consumer} from '../../chainstate/Web3Wrap';
 
 export default function Web3Load() {
   /*let web3, accounts;
