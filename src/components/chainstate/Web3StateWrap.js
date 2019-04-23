@@ -23,7 +23,7 @@ class Web3StateWrap extends Component {
       contractJSON.abi,
       deployedNetwork && deployedNetwork.address
     );
-    console.log("WebStateWrap.CDM() web3version, networkId, deployednet, instance:", web3.version, networkId, deployedNetwork, instance);
+    //console.log("WebStateWrap.CDM() web3version, networkId, deployednet, instance:", web3.version, networkId, deployedNetwork, instance);
     this.setState({
       instance
     })

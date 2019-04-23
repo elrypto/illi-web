@@ -20,14 +20,13 @@ class SideChainWrap extends Component {
   async componentDidMount() {
     const { contractJSON } = this.props;
     const sChainClient = await getSChainClient(contractJSON);
-
     this.setState(
       {
         sChainClient,
         sChainContract: contractJSON
       });
 
-    console.log("loading sidechainwrap.CDM(), client, contract:", sChainClient, contractJSON);
+    //console.log("loading sidechainwrap.CDM(), client, contract:", sChainClient, contractJSON);
   }
 
   render() {
@@ -38,7 +37,7 @@ class SideChainWrap extends Component {
     }
 
     const contextValue = {
-      sChainstate: sideChainState
+      sChainState: sideChainState
     }
 
     return(
