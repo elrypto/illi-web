@@ -14,6 +14,7 @@ export default function App(props: any): JSX.Element {
         <div>
           <Link to="/">Home</Link>
           <Link to="/register">Register</Link>
+          <Link to="/test">--=-*!--*-</Link>
         </div>
       </header>
       {props.children}
