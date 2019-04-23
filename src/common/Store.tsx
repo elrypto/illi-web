@@ -13,7 +13,7 @@ export const Store = React.createContext<IAppState | any>(initialState);
 function reducer(state: IAppState, action: IAction | any): IAppState {
   switch (action.type) {
     case FETCH_PROVIDERS_DATA:
-      return { ...state, providerState: action.payload.providerState };
+      return { ...state, providerState: {providers: action.payload} };
     case ADD_PROVIDER:
       return {
         ...state,

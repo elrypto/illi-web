@@ -8,7 +8,6 @@ export const ADD_PROVIDER = "ADD_PROVIDER";
 
 
 
-
 export const fetchProviders = async (
   web3State: IWeb3State,
   sChainState: ISideChainState,
@@ -18,7 +17,7 @@ export const fetchProviders = async (
   console.log("schainState, from action", sChainState);
   console.log("web3State, from action", web3State);
 
-  let providers: Array<IProvider> = [{ name: "Morpheus" }, { name: "Elaine" }];
+  let providers: Array<IProvider> = [];
   //let instance = await contractInstanceFromState(sChainState);
 
   const { sChainClient } = sChainState;
@@ -27,18 +26,18 @@ export const fetchProviders = async (
   let allAddresses = await instance.methods
     .getAllEthAddresses().call();
 
-  /*console.log(allAddresses);
-
+  console.log("allAddresses", allAddresses);
+  
   for (let i in allAddresses){  
     let name = await instance.methods.getProviderName(allAddresses[i]).call();
     providers.push({name: name});  
   }  
 
-  console.log("allAddresses::", allAddresses);*/
+  console.log("allAddresses::", allAddresses);
 
   return dispatch({
     type: FETCH_PROVIDERS_DATA,
-    payload: { providerState: { providers } }
+    payload: providers
   });
 };
 
