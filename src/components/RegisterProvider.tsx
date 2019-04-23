@@ -1,14 +1,16 @@
 import * as React from "react";
 import { Store } from "../common/Store";
 import { addProvider } from "../common/Actions";
+import { IProvider } from "../common/Interfaces";
+import { withWeb3Contract } from "./chainstate/Web3StateWrap";
+import { withSChain } from "./chainstate/SideChainWrap";
 
-
-export default function RegisterProvider(props: any): Array<JSX.Element> | any {
+function RegisterProvider(props: any): Array<JSX.Element> | any {
   const { state, dispatch } = React.useContext(Store);
-  const { web3State, sChainState } = state;
-
-  const [currentProvider, setProvider] = React.useState({ name: "" });
+  const { web3State, sChainState } = props;
   const [name, setName] = React.useState("");
+
+  console.log("props", props);
 
   return (
     <div className="container-fluid">
@@ -19,22 +21,19 @@ export default function RegisterProvider(props: any): Array<JSX.Element> | any {
           type="text"
           className="form-control"
           placeholder="Provider name"
-          value={currentProvider.name}
+          value={name}
           onChange={(e: React.FormEvent<HTMLInputElement>) => {
             const { name, value }: any = e.target;
             setName(value);
-            currentProvider.name = value;
-            setProvider(currentProvider);
           }}
         />
         <button
           type="button"
           className="btn btn-outline-secondary"
           onClick={() => {
+            const currentProvider: IProvider = { name };
             addProvider(currentProvider, web3State, sChainState, dispatch);
-            setName('');
-            currentProvider.name = '';
-            setProvider(currentProvider); 
+            setName("");
           }}
         >
           Add
@@ -43,3 +42,5 @@ export default function RegisterProvider(props: any): Array<JSX.Element> | any {
     </div>
   );
 }
+
+export default withWeb3Contract(withSChain(RegisterProvider));

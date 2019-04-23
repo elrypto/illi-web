@@ -1,5 +1,6 @@
 import React, { useState, lazy } from "react";
 import { Store } from "./../common/Store";
+import ChainStateRender from "../components/chainstate/ChainStateRender";
 
 
 const RegisterProvider = React.lazy(() =>
@@ -12,7 +13,9 @@ export default function Register() {
   
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
-      <RegisterProvider />
+       <ChainStateRender>
+         <RegisterProvider />
+      </ChainStateRender>
     </React.Suspense>
   );
 }
