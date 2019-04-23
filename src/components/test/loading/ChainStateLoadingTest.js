@@ -5,6 +5,8 @@ import SideChainWrap from './../../chainstate/SideChainWrap';
 import IlliEth from './../../../contracts/IlliEth.json';
 import IlliApp from './../../../contracts/IlliApp.json';
 import MyDisplayComponent from './MyDisplayComponent';
+import ProviderList from '../../ProviderList';
+
 
 export default function ChainStateLoadingTest() {
   return (
@@ -14,6 +16,7 @@ export default function ChainStateLoadingTest() {
         <Web3StateWrap contractJSON={IlliEth}>
           <SideChainWrap contractJSON={IlliApp}>
             <MyDisplayComponent />
+            <ProviderList />
           </SideChainWrap>
         </Web3StateWrap>
       </Web3Wrap>

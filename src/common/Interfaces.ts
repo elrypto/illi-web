@@ -7,9 +7,7 @@
 export type Dispatch = React.Dispatch<IAction>;
 
 export interface IAppState {
-  web3State: IWeb3State;
   providerState: IProviderState;
-  sChainState: ISideChainState;
 }
 
 export interface IWeb3State {
@@ -27,6 +25,10 @@ export interface IProps {
   providers: Array<IProvider>;
 }
 
+export interface IProvider {
+  name: string;
+}
+
 export interface IProviderState {
   providers: Array<any>;
 }
@@ -36,6 +38,4 @@ export interface IAction {
   payload: IAppState;
 }
 
-export interface IProvider {
-  name: string;
-}
+

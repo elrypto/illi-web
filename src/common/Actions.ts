@@ -1,44 +1,12 @@
 import { IProvider, IAction, IWeb3State, ISideChainState } from "./Interfaces";
-import IlliEthContract from "./../contracts/IlliEth.json";
-import IlliSChainContract from "./../contracts/IlliApp.json";
-import { web3PayloadForContract } from "./../utils/web3Util";
-import { getSChainClient } from "./../utils/getSideChain";
 import { contractInstanceFromState } from "./../utils/sideChainUtils";
 import _ from "lodash";
-import { async } from "q";
+
 
 export const FETCH_PROVIDERS_DATA = "FETCH_PROVIDERS_DATA";
 export const ADD_PROVIDER = "ADD_PROVIDER";
-export const LOAD_WEB3 = "LOAD_WEB3";
-export const LOAD_SCHAIN = "LOAD_SCHAIN";
 
 
-/*
-* convienance method that calls loadWeb3 and loadSChain (so its one call for client)
-* if they want both*/
-export const loadChainState = async(dispatch: any) => {
-  await loadWeb3(dispatch);
-  await loadSChain(dispatch);
-}
-
-export const loadSChain = async (dispatch: any) => {
-  const sChainClient = await getSChainClient(IlliSChainContract);
-
-  return dispatch({
-    type: LOAD_SCHAIN,
-    payload: { sChainClient: sChainClient, sChainContract: IlliSChainContract }
-  });
-};
-
-
-export const loadWeb3 = async (dispatch: any) => {
-  const returnedWebState = await web3PayloadForContract(IlliEthContract);
-
-  return dispatch({
-    type: LOAD_WEB3,
-    payload: { web3State: returnedWebState }
-  });
-};
 
 
 export const fetchProviders = async (
