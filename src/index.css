@@ -30,5 +30,18 @@ body {
   border-bottom: 1px solid black;
   padding: .5rem;
   position:sticky;
-  top:0
+  top:0;
+  margin-bottom: 1rem;
+}
+
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  border-top: 1px solid black;
+  padding: .5rem;
+  position:sticky;
+  top:0;
+  margin-top: 3rem;
 }
