@@ -1,31 +1,34 @@
 import { ISideChainState } from "./../common/Interfaces";
 import LoomClient from "./LoomClient";
+import {
+  LOOM_NETWORK,
+  LOOM_DEV_NETWORK_ID,
+  LOOM_DEV_READ_URL,
+  LOOM_DEV_WRITE_URL,
+  LOOM_EXTDEV_NETWORK_ID,
+  LOOM_EXTDEV_READ_URL,
+  LOOM_EXTDEV_WRITE_URL
+} from "./../config";
+import { config } from "dotenv";
 
-export const getSChainClient = async (contractJson: any):Promise<any | undefined> => {
+export const getSChainClient = async (
+  contractJson: any
+): Promise<any | undefined> => {
+ 
   try {
+    let writeUrl = LOOM_DEV_WRITE_URL;
+    let readUrl = LOOM_DEV_READ_URL;
+    let networkId = LOOM_DEV_NETWORK_ID;
 
-    /*
-        TODO:GET FROM ENV!
-    */
-    let writeUrl = 'ws://127.0.0.1:46658/websocket';
-    let readUrl = 'ws://127.0.0.1:46658/queryws';
-    let networkId = 'default';
+    if (LOOM_NETWORK === "EXTDEV") {
+      writeUrl = LOOM_EXTDEV_READ_URL;
+      readUrl = LOOM_EXTDEV_READ_URL;
+      networkId = LOOM_EXTDEV_NETWORK_ID;
+    }
 
-      /*let writeUrl = 'ws://192.168.43.120:46658/websocket';
-      let readUrl = 'ws://192.168.43.120:46658/queryws';
-      let networkId = 'default';
-      */
-      if (process.env.NETWORK === 'extdev') {
-        writeUrl = 'ws://extdev-plasma-us1.dappchains.com:80/websocket';
-        readUrl = 'ws://extdev-plasma-us1.dappchains.com:80/queryws';
-        networkId = 'extdev-plasma-us1';
-      }
+    console.log("loading schain for network, and config params:", LOOM_NETWORK,  writeUrl, readUrl, networkId, contractJson);
 
-
-    //console.log("loading schain with:", writeUrl, readUrl, networkId, contractJson);
-
-    return  new LoomClient(contractJson, writeUrl, readUrl, networkId);
-   
+    return new LoomClient(contractJson, writeUrl, readUrl, networkId);
   } catch (error) {
     alert(
       `Failed to load sidechain or  side chain contract. Check console for details.`

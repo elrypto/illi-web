@@ -1,5 +1,5 @@
 import Web3 from "web3";
-
+import {WEB3_FALLBACK_PORT} from './../config';
 
 const getWeb3 = () =>
   new Promise((resolve, reject) => {
@@ -30,7 +30,7 @@ const getWeb3 = () =>
       else {
         const provider = new Web3.providers.HttpProvider(
           //"http://127.0.0.1:9545"
-          "http://127.0.0.1:7545"
+          WEB3_FALLBACK_PORT
         );
         const web3 = new Web3(provider);
         console.log("No web3 instance injected, using Local web3.");

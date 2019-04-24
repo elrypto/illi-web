@@ -8,7 +8,7 @@ export const ADD_PROVIDER = "ADD_PROVIDER";
 
 export const notify = (msg: string, success?: boolean) => {
   !success
-    ? toast.info(msg)
+    ? toast(msg)
     : toast.success(msg, { autoClose: false });
 };
 

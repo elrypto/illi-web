@@ -14,6 +14,8 @@ dotenv.config();
 
 const RouterPage = (props: { pageComponent: JSX.Element } & RouteComponentProps) => props.pageComponent;
 
+console.log("node env:", process.env.NODE_ENV);
+
 
 ReactDOM.render(
   <StoreProvider>
