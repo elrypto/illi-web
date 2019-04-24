@@ -1,19 +1,26 @@
 import { IProvider, IAction, IWeb3State, ISideChainState } from "./Interfaces";
 import { contractInstanceFromState } from "./../utils/sideChainUtils";
 import _ from "lodash";
-
+import { toast } from "react-toastify";
 
 export const FETCH_PROVIDERS_DATA = "FETCH_PROVIDERS_DATA";
 export const ADD_PROVIDER = "ADD_PROVIDER";
 
+export const notify = (msg: string, success?: boolean) => {
+  !success
+    ? toast.info(msg)
+    : toast.success(msg, { autoClose: false });
+};
 
+export const notifyError = (msg: string) => {
+  toast.error(msg, { autoClose: false });
+};
 
 export const fetchProviders = async (
   web3State: IWeb3State,
   sChainState: ISideChainState,
   dispatch: any
 ) => {
-
   console.log("schainState, from action", sChainState);
   console.log("web3State, from action", web3State);
 
@@ -22,16 +29,15 @@ export const fetchProviders = async (
 
   const { sChainClient } = sChainState;
   let instance = await contractInstanceFromState(sChainState);
-  
-  let allAddresses = await instance.methods
-    .getAllEthAddresses().call();
+
+  let allAddresses = await instance.methods.getAllEthAddresses().call();
 
   console.log("allAddresses", allAddresses);
-  
-  for (let i in allAddresses){  
+
+  for (let i in allAddresses) {
     let name = await instance.methods.getProviderName(allAddresses[i]).call();
-    providers.push({name: name});  
-  }  
+    providers.push({ name: name });
+  }
 
   console.log("allAddresses::", allAddresses);
 
@@ -40,7 +46,6 @@ export const fetchProviders = async (
     payload: providers
   });
 };
-
 
 export const addProvider = async (
   provider: IProvider,
@@ -53,12 +58,12 @@ export const addProvider = async (
 
   const { sChainClient } = sChainState;
   let instance = await contractInstanceFromState(sChainState);
-  
+
   instance.methods
     .addProviderName(provider.name, web3State.accounts[0])
     .send({ from: sChainClient.getCurrentUserAddress() });
 
-  console.log("sChain tx submitted - addProvider");  
+  console.log("sChain tx submitted - addProvider");
   return dispatch({
     type: ADD_PROVIDER,
     payload: provider

@@ -1,21 +1,32 @@
 import React from "react";
-import {  toast } from "react-toastify";
-
+import { notify, notifyError } from "./../../common/Actions";
 
 export default function ToastTest() {
-  const notify = () => toast("Wow so easy !");
-
   return (
     <div>
-      
       <button
         onClick={() => {
-          notify();
+          notify("tell me something ok");
         }}
       >
-        Notify !
+        Notify
       </button>
-      ;
+
+      <button
+        onClick={() => {
+          notify("tell me something good", true);
+        }}
+      >
+        Success
+      </button>
+
+      <button
+        onClick={() => {
+          notifyError("tell me something bad");
+        }}
+      >
+        Error
+      </button>
     </div>
   );
 }
