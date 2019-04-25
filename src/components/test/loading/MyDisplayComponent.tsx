@@ -5,9 +5,8 @@ import { withSChain } from "../../chainstate/SideChainWrap";
 import { Store } from "../../../common/Store";
 import { addProvider } from "./../../../common/Actions";
 import { IProvider } from "../../../common/Interfaces";
+import { Input, Button} from "antd";
 
-import { Input, Button, List } from "antd";
-import "antd/dist/antd.css";
 
 function MyDisplayComponent(props: any) {
   const { state, dispatch } = React.useContext(Store);

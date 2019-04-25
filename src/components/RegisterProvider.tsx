@@ -4,6 +4,8 @@ import { addProvider } from "../common/Actions";
 import { IProvider } from "../common/Interfaces";
 import { withWeb3Contract } from "./chainstate/Web3StateWrap";
 import { withSChain } from "./chainstate/SideChainWrap";
+import { Input, Button} from "antd";
+
 
 function RegisterProvider(props: any): Array<JSX.Element> | any {
   const { state, dispatch } = React.useContext(Store);
@@ -17,8 +19,7 @@ function RegisterProvider(props: any): Array<JSX.Element> | any {
       <div className="card-body col-md-6">
         <p>Detected Ethereum Address: {web3State.accounts[0]}</p>
         <p>Service Provider Name:</p>
-        <input
-          type="text"
+        <Input
           className="form-control"
           placeholder="Provider name"
           value={name}
@@ -27,9 +28,8 @@ function RegisterProvider(props: any): Array<JSX.Element> | any {
             setName(value);
           }}
         />
-        <button
-          type="button"
-          className="btn btn-outline-secondary"
+        <Button
+          type="dashed"
           onClick={() => {
             const currentProvider: IProvider = { name };
             addProvider(currentProvider, web3State, sChainState, dispatch);
@@ -37,7 +37,7 @@ function RegisterProvider(props: any): Array<JSX.Element> | any {
           }}
         >
           Add
-        </button>
+        </Button>
       </div>
     </div>
   );

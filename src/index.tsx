@@ -8,7 +8,7 @@ import Main from "./views/Main";
 import Register from "./views/Register";
 import Test from './views/Test';
 import './bootstrap.min.css';
-
+import "antd/dist/antd.css";
 
 
 const RouterPage = (props: { pageComponent: JSX.Element } & RouteComponentProps) => props.pageComponent;
