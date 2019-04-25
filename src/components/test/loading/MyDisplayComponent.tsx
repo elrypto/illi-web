@@ -6,25 +6,27 @@ import { Store } from "../../../common/Store";
 import { addProvider } from "./../../../common/Actions";
 import { IProvider } from "../../../common/Interfaces";
 
+import { Input, Button, List } from "antd";
+import "antd/dist/antd.css";
+
 function MyDisplayComponent(props: any) {
   const { state, dispatch } = React.useContext(Store);
   const { web3State, sChainState } = props;
   const [providerName, setProviderName] = useState("");
 
   return (
-    <div className="container">
+    <div className="container mydisplay-container">
       <p>account: {props.web3State.accounts}</p>
-
-      <input
-        type="text"
+       
+      <Input
+        placeholder="Provider Name"
         value={providerName}
-        onChange={(e: React.FormEvent<HTMLInputElement>) => {
-          const { name, value }: any = e.target;
+        onChange={(event:React.ChangeEvent<HTMLInputElement>) => {
+          const { name, value }: any = event.target;
           setProviderName(value);
         }}
-      />
-      <button
-        className="btn btn-outline-primary"
+        />
+      <Button 
         onClick={() => {
           console.log("MyDisplay.addProvider.click(), value:", providerName);
           const newProvider: IProvider = { name: providerName };
@@ -32,8 +34,8 @@ function MyDisplayComponent(props: any) {
           setProviderName('');
         }}
       >
-        Add Provider
-      </button>
+         Add Provider
+      </Button>
     </div>
   );
 }

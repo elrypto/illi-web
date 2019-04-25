@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "@types/antd": "^1.0.0",
     "@types/dotenv": "^6.1.1",
     "@types/jest": "24.0.11",
     "@types/lodash": "^4.14.123",
@@ -12,6 +13,7 @@
     "@types/react": "16.8.13",
     "@types/react-dom": "16.8.3",
     "@types/web3": "^1.0.18",
+    "antd": "^3.16.5",
     "dotenv": "^7.0.0",
     "lodash": "^4.17.11",
     "loom-js": "^1.47.0",
@@ -19,6 +21,7 @@
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
     "react-toastify": "^5.1.0",
+    "typeface-roboto": "^0.0.54",
     "typescript": "3.4.3",
     "web3": "1.0.0-beta.37"
   },

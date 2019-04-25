@@ -8,13 +8,10 @@ import Main from "./views/Main";
 import Register from "./views/Register";
 import Test from './views/Test';
 import './bootstrap.min.css';
-import * as dotenv from "dotenv";
 
-dotenv.config();
+
 
 const RouterPage = (props: { pageComponent: JSX.Element } & RouteComponentProps) => props.pageComponent;
-
-console.log("node env:", process.env.NODE_ENV);
 
 
 ReactDOM.render(
